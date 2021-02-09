@@ -10,11 +10,14 @@ function App() {
     const item = localStorage.getItem("items");
     // ...
     if (item) {
-      setItems(JSON.parse(item));
+      const parse = JSON.parse(item);
+      console.log("items : ");
+      console.log(parse);
+      setItems(parse);
     }
   }, []);
   useEffect(() => {
-    console.log(items);
+    //console.log(items);
     localStorage.setItem("items", JSON.stringify(items));
   }, [items]);
 
@@ -79,7 +82,6 @@ function App() {
         {/* display tables for all persons */}
         <p className="is-4 title has-text-centered">Person List</p>
         {/* sample table */}
-        <ItemTable name={"Bob"} gender={"Male"} age={"50"} />
         {items.map((item) => {
           return (
             <ItemTable name={item.name} gender={item.gender} age={item.age} />
